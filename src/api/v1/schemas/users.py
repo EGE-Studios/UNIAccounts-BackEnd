@@ -1,6 +1,8 @@
 from datetime import datetime
 
 from pydantic import BaseModel, EmailStr, validator, ValidationError
+from flask_restx import fields
+from config.api_docs import api
 
 
 class UserSchema(BaseModel):
@@ -17,13 +19,11 @@ class UserSchema(BaseModel):
     def validate_date_of_birth(cls, value):
         return datetime.strptime(value, "%d-%m-%Y")
             
-        
 
 
 class UserSigninSchema(BaseModel):
     user_name: str
     password: str
-    
     
 class UserForgotPasswordSchema(BaseModel):
     user_name: str
